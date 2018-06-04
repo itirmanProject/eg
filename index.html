@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Document</title>
+	<!-- Angular Material -->
+	<link rel='stylesheet prefetch' href='https://cdn.rawgit.com/angular/bower-material/master/angular-material.css'>
+  <link rel='stylesheet prefetch' href='https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.9/angular-material.css'>
+	<link rel='stylesheet prefetch' href='https://material.angularjs.org/1.1.9/docs.css'>
+	<link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+	<header>
+		<div class="container">
+			<div class="title">
+				<h1>Активация блока Эра-Глонасс</h1>
+				<div class="main-button">	
+					<a href="#" class="btn">Сменить пароль</a>
+					<a href="#" class="btn">Выйти из аккаунта</a>
+				</div>
+			</div>
+			<div class="subtitle">Камаз</div>
+			<div class="account"><span>Чуп</span> «Витстройтехмаш» (а000111)</div>
+			<div class="news">Инструкция по работе с модулем и системой:<a href="https://abit.spb.ru/diagnostics/askan-10/diagnosticheskie-pakety/">https://abit.spb.ru/diagnostics/askan-10/diagnosticheskie-pakety/</a>
+				<div>Вышла новая версия прошивки 3.07 ГАЗ:<a href="https://abit.spb.ru/diagnostics/askan-10/diagnosticheskie-pakety/">https://abit.spb.ru/diagnostics/askan-10/diagnosticheskie-pakety</a>/<br>— Изменено обозначение «угла опрокидывания»<br>— Добавлена поддержка автоопределения скорости CAN </div>
+				<div class="wrap">
+					<div class="support">	
+						<div>	Поддержка</div>
+						<div>	+7 812 326-85-93</div>
+						<div class=email>	era@abit.spb.ru</div>
+						<a href="#">Отправить сообщение</a>
+					</div>
+					<div class="limit">Лимит кодов: 1 из 3</div>
+				</div>
+			</div>
+			<div class="add-note">Добавить новую запись</div>
+		</div>
+	</header>
+	
+	<div class="main">
+		<div ng-controller="AppCtrl" ng-cloak="" layout="column" layout-align="" layout-padding="" class="selectdemoValidations" ng-app="MyApp">
+	  	<form name="myForm">
+		    <div layout-gt-sm="row" layout-align="start"  layout-nowrap flex="">
+		      <md-input-container class="md-block" flex-gt-xs="">
+		        <label>Vin</label>
+		        <input type="text" name="vin" ng-model="vin" ng-pattern="/^[A-Za-z]{17}/" md-maxlength="17" required="" >
+		        <div ng-messages="myForm.vin.$error" role="alert" multiple="">
+			          <div ng-message="required" class="my-message">Заполните поле</div>
+			          <div ng-message="pattern" class="my-message">Могут использоваться только A-Z</div>
+	          		<div ng-message="md-maxlength" class="my-message">Максимальное количество символов 17</div>
+	        	</div>
+		      </md-input-container>
+					<md-input-container class="md-block" flex-gt-xs="">
+		      	<label>Iccid</label>
+		        <input type="text" name="iccid" ng-model="iccid" md-maxlength="19" ng-pattern="/^[0-9]{19}/" required="">
+		        <div ng-messages="myForm.iccid.$error" role="alert" multiple="">
+		          <div ng-message="required" class="my-message">Заполните поле</div>
+		          <div ng-message="pattern" class="my-message">Могут использоваться только 0-9</div>
+		          <div ng-message="md-maxlength" class="my-message">Максимальное количество символов 19</div>
+	        	</div>
+		      </md-input-container>
+		      <md-input-container class="md-block" flex-gt-xs="">
+		      	<label>Аскан №</label>
+		        <input type="text" name="ascan" ng-model="user.ascan">
+		      </md-input-container>
+		      <md-input-container class="md-block" flex-gt-xs="">
+		        <label>Кат. Т/С</label>
+		        <md-select name="category" ng-model="category" required="">
+		          <md-option value="m1">(M1)Легковой</md-option>
+		          <md-option value="m2">(M2)Автобус < 5 т</md-option>
+		          <md-option value="m3">(M3)Автобус > 5 т</md-option>
+		          <md-option value="n1">(N1)Грузовик < 3,5 т</md-option>
+		          <md-option value="n2">(N2)Грузовик 3,5-12 т</md-option>
+		          <md-option value="n3">(N3)Грузовик > 12 т</md-option>
+		        </md-select>
+		        <div ng-messages="myForm.category.$error" role="alert" multiple="">
+	          	<div ng-message="required" class="my-message">Заполните поле</div>
+	        	</div>
+		      </md-input-container>
+					<div>
+			      <md-select multiple="{{false}}"  placeholder="Тип топлива" ng-model="myModel" class="md-block" flex-gt-xs="">
+			        <md-option value="petrol">Бензин</md-option>
+			        <md-option value="diesel">Дизель</md-option>
+			        <md-option value="kpg">КПГ (метан)</md-option>
+			        <md-option value="sng">СНГ (пропан-бутан)</md-option>
+			        <md-option value="electricity">Электроэнергия</md-option>
+			        <md-option value="hydrogen">Водород</md-option>
+			      </md-select>
+		    	</div>
+				</div>
+				<div layout-gt-sm="row" layout-align="start" flex="">
+					<md-input-container class="md-block" flex-gt-xs="">
+		        <label>Набор параметров</label>
+		        <md-select name="parameters" ng-model="parameters" required="">
+		          <md-option value="kamaz" >Камаз (Серия)</md-option>
+		          <md-option value="daimler">Daimler (axor)</md-option>
+		          <md-option value="withoutAccelerometer">Без акселерометра</md-option>
+		          <md-option value="unknown">Неизвестный</md-option>
+		        </md-select>
+		        <div ng-messages="myForm.parameters.$error" role="alert" multiple="">
+	          	<div ng-message="required" class="my-message">Заполните поле</div>
+	        	</div>
+		      </md-input-container>
+
+		      <md-input-container class="md-block" flex-gt-xs="">
+		        <label>Аудиопрофиль</label>
+		        <md-select name="profile" ng-model="parameters" disabled="">
+		          <md-option value="kamaz" >8</md-option>
+		          <md-option value="2">Daimler (axor)</md-option>
+		          <md-option value="3">Без акселерометра</md-option>
+		          <md-option value="4">Неизвестный</md-option>
+		        </md-select>
+		      </md-input-container>
+
+					<md-input-container class="md-block" flex-gt-xs="">
+		        <label>Ось X</label>
+		        <md-select name="ox" ng-model="parameters" disabled="">
+		          <md-option value="kamaz">1</md-option>
+		          <md-option value="2">Daimler (axor)</md-option>
+		          <md-option value="3">Без акселерометра</md-option>
+		          <md-option value="4">Неизвестный</md-option>
+		        </md-select>
+		      </md-input-container>
+
+		      <md-input-container class="md-block" flex-gt-xs="">
+		        <label>Ось Y</label>
+		        <md-select name="oy" ng-model="parameters" disabled="">
+		          <md-option value="kamaz" >0</md-option>
+		        </md-select>
+		      </md-input-container>
+
+		      <md-input-container class="md-block" flex-gt-xs="">
+		        <label>Ось Z</label>
+		        <md-select name="oz" ng-model="parameters" disabled="">
+		          <md-option value="kamaz" >-1333</md-option>
+		        </md-select>
+		      </md-input-container>
+
+		      <md-input-container class="md-block" flex-gt-xs="">
+		        <label>Угол опрокидывания</label>
+		        <md-select name="tiltingAngle" ng-model="parameters" disabled="">
+		          <md-option value="kamaz" >42</md-option>
+		        </md-select>
+		      </md-input-container>
+
+		      <md-input-container class="md-block" flex-gt-xs="">
+		        <label>Время опрокидывания</label>
+		        <md-select name="time" ng-model="parameters" disabled="">
+		          <md-option value="kamaz" >100</md-option>
+		        </md-select>
+		      </md-input-container>
+
+		      <md-input-container class="md-block" flex-gt-xs="">
+		        <label>Угол направления</label>
+		        <md-select name="directionAngle" ng-model="parameters" disabled="">
+		          <md-option value="kamaz" >0</md-option>
+		        </md-select>
+		      </md-input-container>
+				</div>
+				<div layout-gt-sm="row" layout-align="start" flex="">
+					<md-input-container class="md-block" flex-gt-xs="">
+		        <label>Номер кузова</label>
+		        <input type="text" name="bodyNumber" ng-model="bodyNumber">
+		      </md-input-container>
+
+					<md-input-container class="md-block" flex-gt-xs="">
+		        <label>Марка, модель</label>
+		        <input type="text" name="brand" ng-model="brand" required=""> 
+		        <div ng-messages="myForm.brand.$error" role="alert" multiple="">
+	          	<div ng-message="required" class="my-message">Заполните поле</div>
+	        	</div>
+		      </md-input-container>
+
+		      <md-input-container class="md-block" flex-gt-xs="">
+		        <label>Цвет</label>
+		        <md-select name="color" ng-model="color" required="">
+		          <md-option value="White">Белый</md-option>
+		          <md-option value="Burgundy">Бордовый</md-option>
+		          <md-option value="Cyan">Голубой</md-option>
+		          <md-option value="Yellow">Жёлтый</md-option>
+		          <md-option value="Green">Зелёный</md-option>
+		          <md-option value="Red">Красный</md-option>
+		          <md-option value="Оранжевый">Оранжевый</md-option>
+		          <md-option value="Blue">Синий</md-option>
+		          <md-option value="Lilac">Сиреневый</md-option>
+		          <md-option value="Purple">Фиолетовый</md-option>
+		          <md-option value="Black">Чёрный</md-option>
+		        </md-select>
+		        <div ng-messages="myForm.color.$error" role="alert" multiple="">
+	          	<div ng-message="required" class="my-message">Заполните поле</div>
+	        	</div>
+		      </md-input-container>
+
+				</div>
+				<div class="wrapper">	
+					<input class="btn" value="Генерировать код" type="submit">
+				</div>
+	  	</form>
+		</div>
+	</div>
+
+<div class="container">
+	<div class="filters">
+		<div class="view">Отображать <a href="#">все</a> <a href="#">неподтвержденные</a></div>
+		<div class="choice">Выборка с <a href="#">1.01.2018</a> по <a href="#">1.01.2018</a></div>	
+		<div class="list">в виде <a href="#">списка</a> или <a href="#">.cvs</a></div>	
+	</div>
+</div>
+<div class="tape">
+	<div class="wrapp">
+		<div class="cancel">
+		<div class="">1.01.2018 в 12:00</div>
+		<a href="#">отменить запись</a></div>
+		<div class="first">	
+			<div><span>VIN</span>	AAAAAAAAAAAAAAAAA</div>	
+			<div><span>ICCID</span>	12345678901234567</div>	
+			<div><span>АСКАН №</span>	123456789</div>	
+			<div><span>Кат. Т/С</span>	(M1)Легковой</div>	
+			<div><span>Тип топлива</span>	Бензин, Дизель</div>
+			</div>	
+		<div class="second">
+			<div><span>Модель кабины</span>	Камаз (серия)</div>	
+			<div><span>Аудиопрофиль</span>	253</div>	
+			<div><span>Акселерометр</span> присутствует</div>	
+			<div><span>Ось X</span> 533</div>	
+			<div><span>Ось Y</span> 343</div>
+			<div><span>Ось Z</span> 232</div>
+			<div><span>Угол опракидования</span> 42</div>
+			<div><span>Время опрокидования</span> 253</div>
+			<div><span>Угол направления</span> 253</div>
+		</div>
+		<div class="third">
+			<div><span>Номер кузова</span>	8970177000000746985</div>	
+			<div><span>Марка, Модель</span>	ГАЗ 3110</div>	
+			<div><span>Цвет</span>	Бордовый</div>
+			<div class="code">
+			<a href="#" class="btn">Контрольный код</a>
+			53311</div>	
+			<div class="">
+	 			<form>
+ 		 			<div class="group">      
+      			<input type="text" required>
+      			<span class="highlight"></span>
+      			<span class="bar"></span>
+     				<label>Проверочный код</label>
+  				</div>  
+  				<input type="submit" value="Проверить" class="btn">
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="tape pass">
+	<div class="wrapp">
+		<div class="cancel">
+		<div class="">1.01.2018 в 12:00</div>
+		<a href="#">отменена по паролю</a></div>
+		<div class="first">	
+			<div><span>VIN</span>	AAAAAAAAAAAAAAAAA</div>	
+			<div><span>ICCID</span>	12345678901234567</div>	
+			<div><span>АСКАН №</span>	123456789</div>	
+			<div><span>Кат. Т/С</span>	(M1)Легковой</div>	
+			<div><span>Тип топлива</span>	Бензин, Дизель</div>
+			</div>	
+		<div class="second">
+			<div><span>Модель кабины</span>	Камаз (серия)</div>	
+			<div><span>Аудиопрофиль</span>	253</div>	
+			<div><span>Акселерометр</span> присутствует</div>	
+			<div><span>Ось X</span> 533</div>	
+			<div><span>Ось Y</span> 343</div>
+			<div><span>Ось Z</span> 232</div>
+			<div><span>Угол опракидования</span> 42</div>
+			<div><span>Время опрокидования</span> 253</div>
+			<div><span>Угол направления</span> 253</div>
+		</div>
+		<div class="third">
+			<div><span>Номер кузова</span>	8970177000000746985</div>	
+			<div><span>Марка, Модель</span>	ГАЗ 3110</div>	
+			<div><span>Цвет</span>	Бордовый</div>
+			<div class="code" style="color: rgba(0, 0, 0, 0.2);">
+			<a href="#" class="btn" style="color: rgba(0, 0, 0, 0.2);">Контрольный код</a>
+			53311</div>	
+			<div class="">
+	 			<form>
+ 		 			<div class="group">      
+      			<input type="text" required>
+      			<span class="highlight"></span>
+      			<span class="bar"></span>
+     				<label>Проверочный код</label>
+  				</div>  
+  				<input type="submit" value="Проверить" class="btn" style="color: rgba(0, 0, 0, 0.2);">
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="tape">
+	<div class="wrapp">
+		<div class="cancel">
+		<div class="">1.01.2018 в 12:00</div>
+		<a href="#">отменить запись</a></div>
+		<div class="first">	
+			<div><span>VIN</span>	AAAAAAAAAAAAAAAAA</div>	
+			<div><span>ICCID</span>	12345678901234567</div>	
+			<div><span>АСКАН №</span>	123456789</div>	
+			<div><span>Кат. Т/С</span>	(M1)Легковой</div>	
+			<div><span>Тип топлива</span>	Бензин, Дизель</div>
+			</div>	
+		<div class="second">
+			<div><span>Модель кабины</span>	Камаз (серия)</div>	
+			<div><span>Аудиопрофиль</span>	253</div>	
+			<div><span>Акселерометр</span> присутствует</div>	
+			<div><span>Ось X</span> 533</div>	
+			<div><span>Ось Y</span> 343</div>
+			<div><span>Ось Z</span> 232</div>
+			<div><span>Угол опракидования</span> 42</div>
+			<div><span>Время опрокидования</span> 253</div>
+			<div><span>Угол направления</span> 253</div>
+		</div>
+		<div class="third">
+			<div><span>Номер кузова</span>	8970177000000746985</div>	
+			<div><span>Марка, Модель</span>	ГАЗ 3110</div>	
+			<div><span>Цвет</span>	Бордовый</div>
+			<div class="code">
+			<a href="#" class="btn">Контрольный код</a>
+			53311</div>	
+			<div class="">
+	 			<form>
+ 		 			<div class="group">      
+      			<input type="text" required>
+      			<span class="highlight"></span>
+      			<span class="bar"></span>
+     				<label>Проверочный код</label>
+  				</div>  
+  				<input type="submit" value="Проверить" class="btn">
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="tape pass">
+	<div class="wrapp">
+		<div class="cancel">
+		<div class="">1.01.2018 в 12:00</div>
+		<a href="#">отменена по заявлению</a></div>
+		<div class="first">	
+			<div><span>VIN</span>	AAAAAAAAAAAAAAAAA</div>	
+			<div><span>ICCID</span>	12345678901234567</div>	
+			<div><span>АСКАН №</span>	123456789</div>	
+			<div><span>Кат. Т/С</span>	(M1)Легковой</div>	
+			<div><span>Тип топлива</span>	Бензин, Дизель</div>
+			</div>	
+		<div class="second">
+			<div><span>Модель кабины</span>	Камаз (серия)</div>	
+			<div><span>Аудиопрофиль</span>	253</div>	
+			<div><span>Акселерометр</span> присутствует</div>	
+			<div><span>Ось X</span> 533</div>	
+			<div><span>Ось Y</span> 343</div>
+			<div><span>Ось Z</span> 232</div>
+			<div><span>Угол опракидования</span> 42</div>
+			<div><span>Время опрокидования</span> 253</div>
+			<div><span>Угол направления</span> 253</div>
+		</div>
+		<div class="third ">
+			<div><span>Номер кузова</span>	8970177000000746985</div>	
+			<div><span>Марка, Модель</span>	ГАЗ 3110</div>	
+			<div><span>Цвет</span>	Бордовый</div>
+			<div class="code" style="color: rgba(0, 0, 0, 0.2);">
+			<a href="#" class="btn" style="color: rgba(0, 0, 0, 0.2);">Контрольный код</a>
+			53311</div>	
+			<div class="">
+	 			<form>
+ 		 			<div class="group">      
+      			<input type="text" required>
+      			<span class="highlight"></span>
+      			<span class="bar"></span>
+     				<label>Проверочный код</label>
+  				</div>  
+  				<input type="submit" value="Проверить" class="btn" style="color: rgba(0, 0, 0, 0.2);">
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+  
+
+</body>
+
+<!-- Скрипты -->
+
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-animate.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-route.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-aria.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-messages.min.js'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js'></script>
+<script src='https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.9/angular-material.js'></script>
+
+<script  src="js/index.js"></script>
+
+</html>
