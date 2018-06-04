@@ -3,7 +3,7 @@ body{
   margin: 0;
   font-family: 'PT_Sans', sans-serif;
   font-size: 12px;
-  background: linear-gradient(to bottom, #ecffe7, #fff) no-repeat;
+  background: linear-gradient(to bottom, #ecffe7, #fff) no-repeat cover;
 }
 
 .container{
