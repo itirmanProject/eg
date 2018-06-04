@@ -3,8 +3,7 @@ angular.module('MyApp', ['ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
   $scope.clearValue = function() {
     $scope.vin = undefined;
     $scope.iccid = undefined;
-    $scope.acan = undefined;
-    $scope.acan = undefined;
+    $scope.ascan = undefined;
     $scope.category = undefined;
     $scope.parameters = undefined;
     $scope.bodyNumber = undefined;
