@@ -43,6 +43,7 @@ body{
   font-size: 13px; 
   font-weight: bold; 
   display: inline-flex;
+  text-align: center;
   justify-content: center; 
   align-items: center;  
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
@@ -129,8 +130,7 @@ body{
 }
 
 .main{
-  max-width: 1500px; 
-  min-height: 50px;
+  max-width: 1920px;
   border: 2px solid #a5c7a8;
   border-radius: 6px;
   margin-left: 20px;
@@ -383,6 +383,9 @@ form .btn{
 
   .title { 
     display: inline-block;
+  }
+  .btn{
+    
   }
 
   .wrapp .first div{
