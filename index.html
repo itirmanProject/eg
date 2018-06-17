@@ -15,35 +15,39 @@
 		<div class="container">
 			<div class="title">
 				<h1>Активация блока Эра-Глонасс</h1>
-				<div class="main-button">	
+				<div class="main-button">			
 					<a href="#" class="btn">Сменить пароль</a>
 					<a href="#" class="btn">Выйти из аккаунта</a>
 				</div>
 			</div>
 			<div class="subtitle">Камаз</div>
 			<div class="account"><span>Чуп</span> «Витстройтехмаш» (а000111)</div>
+			<div class="wrap">
 			<div class="news">Инструкция по работе с модулем и системой:<a href="https://abit.spb.ru/diagnostics/askan-10/diagnosticheskie-pakety/">https://abit.spb.ru/diagnostics/askan-10/diagnosticheskie-pakety/</a>
 				<div>Вышла новая версия прошивки 3.07 ГАЗ:<a href="https://abit.spb.ru/diagnostics/askan-10/diagnosticheskie-pakety/">https://abit.spb.ru/diagnostics/askan-10/diagnosticheskie-pakety</a>/<br>— Изменено обозначение «угла опрокидывания»<br>— Добавлена поддержка автоопределения скорости CAN </div>
-				<div class="wrap">
+				</div>
+				<div class="	">
 					<div class="support">	
 						<div>	Поддержка</div>
 						<div>	+7 812 326-85-93</div>
 						<div class=email>	era@abit.spb.ru</div>
-						<a href="#">Отправить сообщение</a>
+						<a href="#" class="btn">Отправить сообщение</a>
 					</div>
 					<div class="limit">Лимит кодов: 1 из 3</div>
 				</div>
 			</div>
-			<div class="add-note">Добавить новую запись</div>
+			
+			
 		</div>
 	</header>
 	
 	<div class="main">
+		<div class="add-note">Добавление новой записи</div>
 		<div ng-controller="AppCtrl" ng-cloak="" layout="column" layout-align="" layout-padding="" class="selectdemoValidations" ng-app="MyApp">
 	  	<form name="myForm">
 		    <div layout-gt-sm="row" layout-align="start"  layout-nowrap flex="">
 		      <md-input-container class="md-block" flex-gt-xs="">
-		        <label>Vin</label>
+		        <label>VIN</label>
 		        <input type="text" name="vin" ng-model="vin" ng-pattern="/^[A-Za-z]{17}/" md-maxlength="17" required="" >
 		        <div ng-messages="myForm.vin.$error" role="alert" multiple="">
 			          <div ng-message="required" class="my-message">Заполните поле</div>
@@ -51,8 +55,12 @@
 	          		<div ng-message="md-maxlength" class="my-message">Максимальное количество символов 17</div>
 	        	</div>
 		      </md-input-container>
+
+						
+
+
 					<md-input-container class="md-block" flex-gt-xs="">
-		      	<label>Iccid</label>
+		      	<label>ICCID</label>
 		        <input type="text" name="iccid" ng-model="iccid" md-maxlength="19" ng-pattern="/^[0-9]{19}/" required="">
 		        <div ng-messages="myForm.iccid.$error" role="alert" multiple="">
 		          <div ng-message="required" class="my-message">Заполните поле</div>
@@ -60,9 +68,17 @@
 		          <div ng-message="md-maxlength" class="my-message">Максимальное количество символов 19</div>
 	        	</div>
 		      </md-input-container>
-		      <md-input-container class="md-block" flex-gt-xs="">
-		      	<label>Аскан №</label>
-		        <input type="text" name="ascan" ng-model="user.ascan">
+						<md-input-container class="md-block" flex-gt-xs="">
+		        <label>Аскан №</label>
+		        <md-select name="ascan" ng-model="user.ascan">
+		          <md-option value="asd">123456789</md-option>
+		          <md-option value="ads">123456789</md-option>
+		          <md-option value="awd">123456789</md-option>
+		          <md-option value="axf">123456789</md-option>
+		          <md-option value="xaf">123456789</md-option>
+		          <md-option value="wdaf">123456789</md-option>
+		        </md-select>
+
 		      </md-input-container>
 		      <md-input-container class="md-block" flex-gt-xs="">
 		        <label>Кат. Т/С</label>
@@ -89,75 +105,7 @@
 			      </md-select>
 		    	</div>
 				</div>
-				<div layout-gt-sm="row" layout-align="start" flex="">
-					<md-input-container class="md-block" flex-gt-xs="">
-		        <label>Набор параметров</label>
-		        <md-select name="parameters" ng-model="parameters" required="">
-		          <md-option value="kamaz" >Камаз (Серия)</md-option>
-		          <md-option value="daimler">Daimler (axor)</md-option>
-		          <md-option value="withoutAccelerometer">Без акселерометра</md-option>
-		          <md-option value="unknown">Неизвестный</md-option>
-		        </md-select>
-		        <div ng-messages="myForm.parameters.$error" role="alert" multiple="">
-	          	<div ng-message="required" class="my-message">Заполните поле</div>
-	        	</div>
-		      </md-input-container>
 
-		      <md-input-container class="md-block" flex-gt-xs="">
-		        <label>Аудиопрофиль</label>
-		        <md-select name="profile" ng-model="parameters" disabled="">
-		          <md-option value="kamaz" >8</md-option>
-		          <md-option value="2">Daimler (axor)</md-option>
-		          <md-option value="3">Без акселерометра</md-option>
-		          <md-option value="4">Неизвестный</md-option>
-		        </md-select>
-		      </md-input-container>
-
-					<md-input-container class="md-block" flex-gt-xs="">
-		        <label>Ось X</label>
-		        <md-select name="ox" ng-model="parameters" disabled="">
-		          <md-option value="kamaz">1</md-option>
-		          <md-option value="2">Daimler (axor)</md-option>
-		          <md-option value="3">Без акселерометра</md-option>
-		          <md-option value="4">Неизвестный</md-option>
-		        </md-select>
-		      </md-input-container>
-
-		      <md-input-container class="md-block" flex-gt-xs="">
-		        <label>Ось Y</label>
-		        <md-select name="oy" ng-model="parameters" disabled="">
-		          <md-option value="kamaz" >0</md-option>
-		        </md-select>
-		      </md-input-container>
-
-		      <md-input-container class="md-block" flex-gt-xs="">
-		        <label>Ось Z</label>
-		        <md-select name="oz" ng-model="parameters" disabled="">
-		          <md-option value="kamaz" >-1333</md-option>
-		        </md-select>
-		      </md-input-container>
-
-		      <md-input-container class="md-block" flex-gt-xs="">
-		        <label>Угол опрокидывания</label>
-		        <md-select name="tiltingAngle" ng-model="parameters" disabled="">
-		          <md-option value="kamaz" >42</md-option>
-		        </md-select>
-		      </md-input-container>
-
-		      <md-input-container class="md-block" flex-gt-xs="">
-		        <label>Время опрокидывания</label>
-		        <md-select name="time" ng-model="parameters" disabled="">
-		          <md-option value="kamaz" >100</md-option>
-		        </md-select>
-		      </md-input-container>
-
-		      <md-input-container class="md-block" flex-gt-xs="">
-		        <label>Угол направления</label>
-		        <md-select name="directionAngle" ng-model="parameters" disabled="">
-		          <md-option value="kamaz" >0</md-option>
-		        </md-select>
-		      </md-input-container>
-				</div>
 				<div layout-gt-sm="row" layout-align="start" flex="">
 					<md-input-container class="md-block" flex-gt-xs="">
 		        <label>Номер кузова</label>
@@ -193,8 +141,108 @@
 		      </md-input-container>
 
 				</div>
+
+				<div layout-gt-sm="row" layout-align="start"  flex="">
+					<md-input-container class="md-block" flex-gt-xs="">
+		        <label>Набор параметров</label>
+		        <md-select name="parameters" ng-model="parameters" required="">
+		          <md-option value="kamaz" >Камаз (Серия)</md-option>
+		          <md-option value="daimler">Daimler (axor)</md-option>
+		          <md-option value="withoutAccelerometer">Без акселерометра</md-option>
+		          <md-option value="unknown">Неизвестный</md-option>
+		        </md-select>
+		        <div ng-messages="myForm.parameters.$error" role="alert" multiple="">
+	          	<div ng-message="required" class="my-message">Заполните поле</div>
+	        	</div>
+		      </md-input-container>
+
+		      <md-input-container class="md-block" flex-gt-xs="">
+		        <label>Аудиопрофиль</label>
+		        <md-select name="profile" ng-model="parameters" disabled="">
+		          <md-option value="kamaz" >8</md-option>
+		          <md-option value="2">Daimler (axor)</md-option>
+		          <md-option value="3">Без акселерометра</md-option>
+		          <md-option value="4">Неизвестный</md-option>
+		        </md-select>
+		      </md-input-container>
+
+		      <md-input-container class="md-block" flex-gt-xs="">
+		        <label>Ось X</label>
+		        <input type="text" name="ox" ng-model="parameters"  disabled="">
+					</md-input-container>
+
+					<!-- <md-input-container class="md-block" flex-gt-xs="">
+		        <label>Ось X</label>
+		        <md-select name="ox" ng-model="parameters" disabled="">
+		          <md-option value="kamaz">1</md-option>
+		          <md-option value="2">Daimler (axor)</md-option>
+		          <md-option value="3">Без акселерометра</md-option>
+		          <md-option value="4">Неизвестный</md-option>
+		        </md-select>
+		      </md-input-container> -->
+
+		      <md-input-container class="md-block" flex-gt-xs="">
+		        <label>Ось Y</label>
+		        <input type="text" name="oy" ng-model="parameters"  disabled="">
+					</md-input-container>
+		      <!-- <md-input-container class="md-block" flex-gt-xs="">
+		        <label>Ось Y</label>
+		        <md-select name="oy" ng-model="parameters" disabled="">
+		          <md-option value="kamaz" >0</md-option>
+		        </md-select>
+		      </md-input-container> -->
+
+		      <md-input-container class="md-block" flex-gt-xs="">
+		        <label>Ось Z</label>
+		        <input type="text" name="oz" ng-model="parameters"  disabled="">
+					</md-input-container>
+
+		      <!-- <md-input-container class="md-block" flex-gt-xs="">
+		        <label>Ось Z</label>
+		        <md-select name="oz" ng-model="parameters" disabled="">
+		          <md-option value="kamaz" >-1333</md-option>
+		        </md-select>
+		      </md-input-container> -->
+
+		      <md-input-container class="md-block" flex-gt-xs="">
+		        <label>Угол опракидывания</label>
+		        <input type="text" name="tiltingAngle" ng-model="parameters"  disabled="">
+					</md-input-container>
+
+		      <!-- <md-input-container class="md-block" flex-gt-xs="">
+		        <label>Угол опракидывания</label>
+		        <md-select name="tiltingAngle" ng-model="parameters" disabled="">
+		          <md-option value="kamaz" >42</md-option>
+		        </md-select>
+		      </md-input-container> -->
+
+		      <md-input-container class="md-block" flex-gt-xs="">
+		        <label>Время опрокидывания</label>
+		        <input type="text" name="time" ng-model="parameters"  disabled="">
+					</md-input-container>
+
+		      <!-- <md-input-container class="md-block" flex-gt-xs="">
+		        <label>Время опрокидывания</label>
+		        <md-select name="time" ng-model="parameters" disabled="">
+		          <md-option value="kamaz" >100</md-option>
+		        </md-select>
+		      </md-input-container> -->
+
+		      <md-input-container class="md-block" flex-gt-xs="">
+		        <label>Угол направления</label>
+		        <input type="text" name="directionAngle" ng-model="parameters"  disabled="">
+					</md-input-container>
+
+		      <!-- <md-input-container class="md-block" flex-gt-xs="">
+		        <label>Угол направления</label>
+		        <md-select name="directionAngle" ng-model="parameters" disabled="">
+		          <md-option value="kamaz" >0</md-option>
+		        </md-select> 
+		      </md-input-container>-->
+				</div>
+				
 				<div class="wrapper">	
-					<input class="btn" value="Генерировать код" type="submit">
+					 <a class="btn">Генерировать код</a>
 				</div>
 	  	</form>
 		</div>
@@ -202,22 +250,51 @@
 
 <div class="container">
 	<div class="filters">
-		<div class="view">Отображать <a href="#">все</a> <a href="#">неподтвержденные</a></div>
+		<div ng-controller="AppCtrl" ng-cloak="" layout="column" layout-align="" layout-padding="" class="selectdemoValidations" ng-app="MyApp">
+			<form name="Myform">
+      <md-input-container class="md-block">
+        <md-switch class="md-primary" name="special" ng-model="project.special" required="">
+          Отображать только неподтвежденные
+        </md-switch>     
+      </md-input-container>
+
+      <md-input-container>
+            <label>Enter date</label>
+            <md-datepicker ng-model="user.submissionDate"></md-datepicker>
+          </md-input-container> 
+    </form>
+
+</div>
 		<div class="choice">Выборка с <a href="#">1.01.2018</a> по <a href="#">1.01.2018</a></div>	
 		<div class="list">в виде <a href="#">списка</a> или <a href="#">.cvs</a></div>	
 	</div>
 </div>
 <div class="tape">
 	<div class="wrapp">
-		<div class="cancel">
-		<div class="">1.01.2018 в 12:00</div>
-		<a href="#">отменить запись</a></div>
+<span class="">1.01.2018 в 12:00</span>
+	<div class="cancel">
+		<a href="#">отменить запись</a>
+		<div class="code">
+			<span>Контрольный код</span>
+			53311</div>			
+	 			<form>
+ 		 			<div class="group">      
+      			<input type="text" class="input" required>
+      			<span class="highlight"></span>
+      			<span class="bar"></span>
+     				<label class="label">Проверочный код</label>
+  				</div>  		
+				</form>		
+	</div> 
 		<div class="first">	
 			<div><span>VIN</span>	AAAAAAAAAAAAAAAAA</div>	
 			<div><span>ICCID</span>	12345678901234567</div>	
 			<div><span>АСКАН №</span>	123456789</div>	
 			<div><span>Кат. Т/С</span>	(M1)Легковой</div>	
 			<div><span>Тип топлива</span>	Бензин, Дизель</div>
+			<div><span>Номер кузова</span>	8970177000000746985</div>	
+			<div><span>Марка, Модель</span>	ГАЗ 3110</div>	
+			<div><span>Цвет</span>	Бордовый</div>
 			</div>	
 		<div class="second">
 			<div><span>Модель кабины</span>	Камаз (серия)</div>	
@@ -230,28 +307,133 @@
 			<div><span>Время опрокидования</span> 253</div>
 			<div><span>Угол направления</span> 253</div>
 		</div>
-		<div class="third">
+	</div>
+</div> 
+
+<div class="tape">
+	<div class="wrapp">
+		<span class="">1.01.2018 в 12:00</span>
+		<div class="cancel">
+			<a href="#">отменить запись</a>
+			<div class="code">
+			<span>Контрольный код</span>
+			53311</div>	
+	 		<form>
+ 		 		<div class="group">      
+      		<input type="text" class="input" required>
+      		<span class="highlight"></span>
+      		<span class="bar"></span>
+     			<label class="label">Проверочный код</label>
+  			</div>  	
+			</form>		
+		</div> 
+		<div class="first">	
+			<div><span>VIN</span>	AAAAAAAAAAAAAAAAA</div>	
+			<div><span>ICCID</span>	12345678901234567</div>	
+			<div><span>АСКАН №</span>	123456789</div>	
+			<div><span>Кат. Т/С</span>	(M1)Легковой</div>	
+			<div><span>Тип топлива</span>	Бензин, Дизель</div>
 			<div><span>Номер кузова</span>	8970177000000746985</div>	
 			<div><span>Марка, Модель</span>	ГАЗ 3110</div>	
 			<div><span>Цвет</span>	Бордовый</div>
-			<div class="code">
-			<a href="#" class="btn">Контрольный код</a>
-			53311</div>	
-			<div class="">
+			</div>	
+		<div class="second">
+			<div><span>Модель кабины</span>	Камаз (серия)</div>	
+			<div><span>Аудиопрофиль</span>	253</div>	
+			<div><span>Акселерометр</span> присутствует</div>	
+			<div><span>Ось X</span> 533</div>	
+			<div><span>Ось Y</span> 343</div>
+			<div><span>Ось Z</span> 232</div>
+			<div><span>Угол опракидования</span> 42</div>
+			<div><span>Время опрокидования</span> 253</div>
+			<div><span>Угол направления</span> 253</div>
+		</div>		
+	</div>
+</div> 
+<div class="tape">
+	<div class="wrapp">
+<span class="">1.01.2018 в 12:00</span>
+	<div class="cancel">
+		<a href="#">отменить запись</a>
+		<div class="code">
+			<span>Контрольный код</span>
+			53311</div>			
 	 			<form>
  		 			<div class="group">      
       			<input type="text" class="input" required>
       			<span class="highlight"></span>
       			<span class="bar"></span>
      				<label class="label">Проверочный код</label>
-  				</div>  
-  				<input type="submit" value="Проверить" class="btn" style="color: #00006a;">
-				</form>
-			</div>
+  				</div>  		
+				</form>		
+	</div> 
+		<div class="first">	
+			<div><span>VIN</span>	AAAAAAAAAAAAAAAAA</div>	
+			<div><span>ICCID</span>	12345678901234567</div>	
+			<div><span>АСКАН №</span>	123456789</div>	
+			<div><span>Кат. Т/С</span>	(M1)Легковой</div>	
+			<div><span>Тип топлива</span>	Бензин, Дизель</div>
+			<div><span>Номер кузова</span>	8970177000000746985</div>	
+			<div><span>Марка, Модель</span>	ГАЗ 3110</div>	
+			<div><span>Цвет</span>	Бордовый</div>
+			</div>	
+		<div class="second">
+			<div><span>Модель кабины</span>	Камаз (серия)</div>	
+			<div><span>Аудиопрофиль</span>	253</div>	
+			<div><span>Акселерометр</span> присутствует</div>	
+			<div><span>Ось X</span> 533</div>	
+			<div><span>Ось Y</span> 343</div>
+			<div><span>Ось Z</span> 232</div>
+			<div><span>Угол опракидования</span> 42</div>
+			<div><span>Время опрокидования</span> 253</div>
+			<div><span>Угол направления</span> 253</div>
 		</div>
 	</div>
-</div>
-<div class="tape pass">
+</div> 
+
+<div class="tape">
+	<div class="wrapp">
+		<span class="">1.01.2018 в 12:00</span>
+		<div class="cancel">
+			<a href="#">отменить запись</a>
+			<div class="code">
+			<span>Контрольный код</span>
+			53311</div>	
+	 		<form>
+ 		 		<div class="group">      
+      		<input type="text" class="input" required>
+      		<span class="highlight"></span>
+      		<span class="bar"></span>
+     			<label class="label">Проверочный код</label>
+  			</div>  	
+			</form>		
+		</div> 
+		<div class="first">	
+			<div><span>VIN</span>	AAAAAAAAAAAAAAAAA</div>	
+			<div><span>ICCID</span>	12345678901234567</div>	
+			<div><span>АСКАН №</span>	123456789</div>	
+			<div><span>Кат. Т/С</span>	(M1)Легковой</div>	
+			<div><span>Тип топлива</span>	Бензин, Дизель</div>
+			<div><span>Номер кузова</span>	8970177000000746985</div>	
+			<div><span>Марка, Модель</span>	ГАЗ 3110</div>	
+			<div><span>Цвет</span>	Бордовый</div>
+			</div>	
+		<div class="second">
+			<div><span>Модель кабины</span>	Камаз (серия)</div>	
+			<div><span>Аудиопрофиль</span>	253</div>	
+			<div><span>Акселерометр</span> присутствует</div>	
+			<div><span>Ось X</span> 533</div>	
+			<div><span>Ось Y</span> 343</div>
+			<div><span>Ось Z</span> 232</div>
+			<div><span>Угол опракидования</span> 42</div>
+			<div><span>Время опрокидования</span> 253</div>
+			<div><span>Угол направления</span> 253</div>
+		</div>		
+	</div>
+</div> 
+
+
+<!-- <div class="tape pass">
 	<div class="wrapp">
 		<div class="cancel">
 		<div class="">1.01.2018 в 12:00</div>
@@ -289,7 +471,7 @@
       			<span class="bar"></span>
      				<label class="label">Проверочный код</label>
   				</div>  
-  				<input type="submit" value="Проверить" class="btn" style="color: rgba(0, 0, 0, 0.2);">
+  				
 				</form>
 			</div>
 		</div>
@@ -334,7 +516,7 @@
       			<span class="bar"></span>
      				<label class="label">Проверочный код</label>
   				</div>  
-  				<input type="submit" value="Проверить" class="btn" style="color: #00006a;">
+  				
 				</form>
 			</div>
 		</div>
@@ -379,12 +561,12 @@
       			<span class="bar"></span>
      				<label class="label">Проверочный код</label>
   				</div>  
-  				<input type="submit" value="Проверить" class="btn" style="color: rgba(0, 0, 0, 0.2);">
+  				
 				</form>
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->
 
 
 
