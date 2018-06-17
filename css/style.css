@@ -8,7 +8,7 @@ body{
 
 .container{
   position: relative;
-  padding-left: 30px;
+  padding-left: 20px;
 }
 
 .title{
@@ -225,6 +225,12 @@ form .btn{
   text-decoration: underline;    
 }
 
+.md-primary{
+    z-index: 100;
+    position: absolute;
+    top: 0;
+}
+
 .tape{
   max-width: 1500px; 
   min-height: 50px;
@@ -244,6 +250,7 @@ form .btn{
   display: flex;
   flex-direction: column;
   float: right;
+  align-content: space-between;
 }
 
 .cancel a{
@@ -286,11 +293,11 @@ form .btn{
 .wrapp .second div{
     display: inline-block; 
     margin-right: 20px;  
-    padding-top: 10px;
+    /padding-top: 10px;
 }
 
-.wrapp .second div:nth-child(9){
-    padding-top: 0;
+.wrapp .first div:last-child{
+    padding-bottom: 10px;
 }
 
 .wrapp .first span{
@@ -410,7 +417,7 @@ form .btn{
 
 /* Media */
 
-/*  @media (max-width: 960px) {
+  @media (max-width: 960px) {
 
   .main{
     margin-right: 20px;
@@ -428,6 +435,11 @@ form .btn{
     right: 0;
   }
 
+  .wrap .support{
+    margin-top: 0;
+    margin-right: 20px;
+  }
+
   .choice{
     display: block;
   }
@@ -440,13 +452,6 @@ form .btn{
     display: block;
   }
 
-  .wrapp .third div{
-    display: block;
-  }
-
-  .wrapp .third .btn{
-    margin: 10px 25px 10px 0;
-  }
   .list{
     display: block;
     margin: 0;
@@ -454,7 +459,7 @@ form .btn{
 
 }
 
-@media (max-width: 630px) {
+@media (max-width: 662px) {
 
   .title { 
     display: inline-block;
@@ -470,28 +475,24 @@ form .btn{
 
   .tape{
     margin-right: 20px; 
+
   }
 
   .view{
     margin-bottom: 10px; 
   }
 
-  .wrapp .first div{
+  .wrapp .first {
+    display: block;
+  }
+
+  .wrapp .second{
     display: block;
   }
 
   .list{
   display: block;
   margin: 0;
-  }
-
-  .wrapp .third .btn{
-    margin: 10px 25px 10px 0;
-  }
-
-  .wrapp .third div{
-    display: block; 
-    margin-right: 20px;  
   }
 
   .main-button {
@@ -502,4 +503,4 @@ form .btn{
     margin: 0;
   }
 
-}  */
+}

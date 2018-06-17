@@ -4,20 +4,22 @@ angular.module('MyApp', ['ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
   $scope.clearValue = function() {
     $scope.vin = undefined;
     $scope.iccid = undefined;
-    $scope.ascan = undefined;
+    // $scope.ascan = undefined;
     $scope.category = undefined;
     $scope.parameters = undefined;
     $scope.bodyNumber = undefined;
     $scope.brand = undefined;
     $scope.color = undefined;
     $scope.code = undefined;
+    $scope.special = undefined;
     $scope.myForm.$setPristine();
   };
 
   $scope.user = {
-   		ascan: '123456789',
+   		ascan: '123456789'
       
     };
+
 
 });
 
@@ -41,4 +43,27 @@ function addElement(e) {
 
     addDiv.classList.add('pulse');
     this.appendChild(addDiv);
+}
+
+function Moon(card_number) {
+
+  var arr = [],
+      card_number = card_number.toString();
+  for(var i = 0; i < card_number.length; i++) {
+    if(i % 2 === 0) {
+      var m = parseInt(card_number[i]) * 2;
+      if(m > 9) {
+        arr.push(m - 9);
+      } else {
+        arr.push(m);
+      } 
+    } else {
+        var n = parseInt(card_number[i]);
+        arr.push(n)
+      }
+  }
+  //console.log(arr);
+  var summ = arr.reduce(function(a, b) { return a + b; });
+  return Boolean(!(summ % 10));
+
 }
