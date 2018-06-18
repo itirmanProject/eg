@@ -55,10 +55,6 @@
 	          		<div ng-message="md-maxlength" class="my-message">Максимальное количество символов 17</div>
 	        	</div>
 		      </md-input-container>
-
-						
-
-
 					<md-input-container class="md-block" flex-gt-xs="">
 		      	<label>ICCID</label>
 		        <input type="text" name="iccid" ng-model="iccid" md-maxlength="19" maxlength="19" ng-pattern="/^[0-9]{19}/" required="">
@@ -71,14 +67,13 @@
 						<md-input-container class="md-block" flex-gt-xs="">
 		        <label>Аскан №</label>
 		        <md-select name="ascan" ng-model="user.ascan">
-		          <md-option value="asd">123456789</md-option>
+		          <md-option value="asd" selected>123456789</md-option>
 		          <md-option value="ads">123456789</md-option>
 		          <md-option value="awd">123456789</md-option>
 		          <md-option value="axf">123456789</md-option>
 		          <md-option value="xaf">123456789</md-option>
 		          <md-option value="wdaf">123456789</md-option>
 		        </md-select>
-
 		      </md-input-container>
 		      <md-input-container class="md-block" flex-gt-xs="">
 		        <label>Кат. Т/С</label>
@@ -105,7 +100,6 @@
 			      </md-select>
 		    	</div>
 				</div>
-
 				<div layout-gt-sm="row" layout-align="start" flex="">
 					<md-input-container class="md-block" flex-gt-xs="">
 		        <label>Номер кузова</label>
@@ -119,7 +113,6 @@
 	          	<div ng-message="required" class="my-message">Заполните поле</div>
 	        	</div>
 		      </md-input-container>
-
 		      <md-input-container class="md-block" flex-gt-xs="">
 		        <label>Цвет</label>
 		        <md-select name="color" ng-model="color" required="">
@@ -139,14 +132,12 @@
 	          	<div ng-message="required" class="my-message">Заполните поле</div>
 	        	</div>
 		      </md-input-container>
-
 				</div>
-
 				<div layout-gt-sm="row" layout-align="start"  flex="">
 					<md-input-container class="md-block" flex-gt-xs="">
 		        <label>Набор параметров</label>
 		        <md-select name="parameters" class="parameters" ng-model="parameters" required="">
-		          <md-option value="kamaz" >Камаз (Серия)</md-option>
+		          <md-option value="kamaz" id="kamaz">Камаз (Серия)</md-option>
 		          <md-option value="daimler">Daimler (axor)</md-option>
 		          <md-option value="withoutAccelerometer">Без акселерометра</md-option>
 		          <md-option value="unknown">Неизвестный</md-option>
@@ -155,7 +146,6 @@
 	          	<div ng-message="required" class="my-message">Заполните поле</div>
 	        	</div>
 		      </md-input-container>
-
 		      <md-input-container class="md-block" flex-gt-xs="">
 		        <label>Аудиопрофиль</label>
 		        <md-select name="profile" ng-model="parameters" disabled="">
@@ -165,10 +155,9 @@
 		          <md-option value="4">Неизвестный</md-option>
 		        </md-select>
 		      </md-input-container>
-
 		      <md-input-container class="md-block" flex-gt-xs="">
 		        <label>Ось X</label>
-		        <input type="text" name="ox" ng-model="parameters"  disabled="">
+		        <input type="text" name="ox" class="ox" ng-model="parameters"  disabled="">
 					</md-input-container>
 
 					<!-- <md-input-container class="md-block" flex-gt-xs="">
@@ -240,66 +229,46 @@
 		        </md-select> 
 		      </md-input-container>-->
 
-
-				</div>
-				
+				</div>				
 				<div class="wrapper">	
 					 <a class="btn">Генерировать код</a>
 				</div>
-	  	</form>
-	  	<md-input-container class="md-block">
-        <md-switch class="md-primary" name="special" ng-model="project.special" required="">
-          Отображать только неподтвежденные
-        </md-switch>     
-      </md-input-container>
-
-      <md-input-container>
-            <label>Enter date</label>
-            <md-datepicker ng-model="user.submissionDate"></md-datepicker>
-          </md-input-container> 
+	  	</form>	  	
 		</div>
-
 	</div>
 
-<div ng-controller="AppCtrl" ng-cloak="" layout="column" layout-align="" layout-padding="" class="selectdemoValidations" ng-app="MyApp">
-			<form name="Myform">
-      <md-input-container class="md-block">
-        <md-switch class="md-primary" name="special" ng-model="project.special" required="">
-          Отображать только неподтвежденные
-        </md-switch>     
-      </md-input-container>
-
-      <md-input-container>
-            <label>Enter date</label>
-            <md-datepicker ng-model="user.submissionDate"></md-datepicker>
-          </md-input-container> 
-    </form>
-
-</div>
 
 <div class="container">
 	<div class="filters">
-		
+		<input type="checkbox" id="id-name--1" name="set-name" class="switch-input">
+		<label for="id-name--1" class="switch-label">Отображать  <span class="toggle--off">Все</span><span class="toggle--on">только неподтвежденные</span></label>	
 		<div class="choice">Выборка с <a href="#">1.01.2018</a> по <a href="#">1.01.2018</a></div>	
 		<div class="list">в виде <a href="#">списка</a> или <a href="#">.cvs</a></div>	
 	</div>
 </div>
 <div class="tape">
 	<div class="wrapp">
-<span class="">1.01.2018 в 12:00</span>
-	<div class="cancel">
+		<span class="">1.01.2018 в 12:00</span>
+		<div class="cancel">
 		<a href="#">отменить запись</a>
 		<div class="code">
 			<span>Контрольный код</span>
 			53311</div>			
-	 			<form>
+	 			
  		 			<div class="group">      
-      			<input type="text" class="input" card_number maxlength="5" required>
+      			<input type="text" class="input" id="userNum" maxlength="19" required>
       			<span class="highlight"></span>
       			<span class="bar"></span>
-     				<label class="label">Проверочный код</label>
+     				<label class="label" >Проверочный код</label>
+
+     				
+   
+   <input type="submit" value="IsCodeValid?" id="submitBtn" />
+
+<br />
+<div id="resultDiv"></div>
   				</div>  		
-				</form>		
+						
 	</div> 
 		<div class="first">	
 			<div><span>VIN</span>	AAAAAAAAAAAAAAAAA</div>	
